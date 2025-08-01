@@ -20,7 +20,9 @@ interface UseWeatherReturn extends UseWeatherState {
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 const STALE_DURATION = 5 * 60 * 1000; // 5 minutes (show stale indicator)
 
-export function useWeather(onLocationFetched?: (location: Location, isGPSLocation: boolean) => void): UseWeatherReturn {
+export function useWeather(
+  onLocationFetched?: (location: Location, isGPSLocation: boolean) => void
+): UseWeatherReturn {
   const [state, setState] = useState<UseWeatherState>({
     data: null,
     loading: true,
@@ -64,8 +66,10 @@ export function useWeather(onLocationFetched?: (location: Location, isGPSLocatio
       
       if (!currentLocation) {
         setCurrentLocation(targetLocation);
-        // Notify parent component about the GPS location
+        // Only add GPS location to recent searches if this is truly the first discovery
+        // (no current location AND no existing searches)
         if (isGPSLocation && onLocationFetched) {
+          console.log('🎯 GPS location detected, adding to recent searches:', targetLocation.name);
           onLocationFetched(targetLocation, true);
         }
       }
@@ -107,7 +111,7 @@ export function useWeather(onLocationFetched?: (location: Location, isGPSLocatio
   }, [currentLocation, onLocationFetched]);
 
   const refresh = useCallback(async () => {
-    // When refreshing, we want to get GPS location again
+    // When refreshing, get fresh GPS location and add to recent searches
     const freshLocation = await getLocationWithFallback();
     if (onLocationFetched) {
       onLocationFetched(freshLocation, true);
