@@ -14,12 +14,13 @@ interface UseWeatherReturn extends UseWeatherState {
   fetchWeather: (location?: Location) => Promise<void>;
   refresh: () => Promise<void>;
   isStale: boolean;
+  currentLocation: Location | null;
 }
 
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 const STALE_DURATION = 5 * 60 * 1000; // 5 minutes (show stale indicator)
 
-export function useWeather(): UseWeatherReturn {
+export function useWeather(onLocationFetched?: (location: Location, isGPSLocation: boolean) => void): UseWeatherReturn {
   const [state, setState] = useState<UseWeatherState>({
     data: null,
     loading: true,
@@ -49,10 +50,24 @@ export function useWeather(): UseWeatherReturn {
     setState(prev => ({ ...prev, loading: true, error: null }));
 
     try {
-      const targetLocation = location || currentLocation || await getLocationWithFallback();
+      let targetLocation: Location;
+      let isGPSLocation = false;
+
+      if (location) {
+        // Manual location provided
+        targetLocation = location;
+      } else {
+        // No location provided, use GPS or fallback
+        targetLocation = currentLocation || await getLocationWithFallback();
+        isGPSLocation = !currentLocation; // It's a GPS location if we didn't have a current location
+      }
       
       if (!currentLocation) {
         setCurrentLocation(targetLocation);
+        // Notify parent component about the GPS location
+        if (isGPSLocation && onLocationFetched) {
+          onLocationFetched(targetLocation, true);
+        }
       }
 
       const weatherData = await getCurrentWeather(targetLocation.lat, targetLocation.lon);
@@ -89,11 +104,17 @@ export function useWeather(): UseWeatherReturn {
         lastUpdated: null
       });
     }
-  }, [currentLocation]);
+  }, [currentLocation, onLocationFetched]);
 
-  const refresh = useCallback(() => {
-    return fetchWeather(currentLocation || undefined);
-  }, [fetchWeather, currentLocation]);
+  const refresh = useCallback(async () => {
+    // When refreshing, we want to get GPS location again
+    const freshLocation = await getLocationWithFallback();
+    if (onLocationFetched) {
+      onLocationFetched(freshLocation, true);
+    }
+    setCurrentLocation(freshLocation);
+    return fetchWeather(freshLocation);
+  }, [fetchWeather, onLocationFetched]);
 
   // Auto-refresh weather data with intelligent timing
   useEffect(() => {
@@ -146,6 +167,7 @@ export function useWeather(): UseWeatherReturn {
     ...state,
     fetchWeather,
     refresh,
-    isStale
+    isStale,
+    currentLocation
   };
 } 

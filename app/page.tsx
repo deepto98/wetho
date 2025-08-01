@@ -11,8 +11,19 @@ import RecentSearchesSidebar from '@/components/RecentSearchesSidebar';
 import { Location } from '@/lib/types';
 
 export default function Home() {
-  const { data, loading, error, fetchWeather, refresh } = useWeather();
   const { recentSearches, addRecentSearch, removeRecentSearch, clearRecentSearches, isHydrated } = useRecentSearches();
+  
+  // Handle GPS location fetching and add to recent searches
+  const handleLocationFetched = (location: Location, isGPSLocation: boolean) => {
+    if (isGPSLocation) {
+      console.log('🎯 GPS Location fetched:', location);
+      console.log('📞 Adding GPS location to recent searches...');
+      addRecentSearch(location);
+      console.log('✅ GPS location added to search history');
+    }
+  };
+
+  const { data, loading, error, fetchWeather, refresh } = useWeather(handleLocationFetched);
 
   const handleLocationSelect = (location: Location) => {
     console.log('🎯 Location selected:', location);
@@ -25,7 +36,7 @@ export default function Home() {
   };
 
   if (loading && !data) {
-    return (
+  return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
         {/* Sidebar */}
         <RecentSearchesSidebar
@@ -138,7 +149,7 @@ export default function Home() {
             <p className="mt-1">
               Built with Next.js, TypeScript, and Tailwind CSS
             </p>
-          </footer>
+      </footer>
         </div>
       </div>
     </div>
