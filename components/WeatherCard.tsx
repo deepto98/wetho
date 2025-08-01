@@ -31,9 +31,9 @@ function getAQIStatus(aqi: number) {
   switch (aqi) {
     case 1: return { label: 'Good', color: 'text-green-500', bgColor: 'bg-green-100' };
     case 2: return { label: 'Fair', color: 'text-yellow-500', bgColor: 'bg-yellow-100' };
-    case 3: return { label: 'Moderate', color: 'text-orange-500', bgColor: 'bg-orange-100' };
-    case 4: return { label: 'Poor', color: 'text-red-500', bgColor: 'bg-red-100' };
-    case 5: return { label: 'Very Poor', color: 'text-purple-500', bgColor: 'bg-purple-100' };
+    case 3: return { label: 'Moderate', color: 'text-purple-500', bgColor: 'bg-purple-100' };
+    case 4: return { label: 'Poor', color: 'text-orange-500', bgColor: 'bg-orange-100' };
+    case 5: return { label: 'Very Poor', color: 'text-red-500', bgColor: 'bg-red-100' };
     default: return { label: 'Unknown', color: 'text-gray-500', bgColor: 'bg-gray-100' };
   }
 }

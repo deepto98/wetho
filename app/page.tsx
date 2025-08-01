@@ -104,12 +104,12 @@ export default function Home() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="w-full max-w-6xl mx-auto px-4 py-4 ml-16 lg:ml-auto">
           {/* Header with Logo */}
-          <div className="text-center mb-6">
+          <div className="text-center mb-6 pt-4">
             <div className="flex items-center justify-center mb-3">
-              <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-2xl shadow-lg mr-3">
-                <Cloud className="w-6 h-6 text-white" />
+              <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
+                <Cloud className="w-7 h-7 text-white" />
               </div>
-              <h1 className="text-3xl font-bold text-gray-800">Wetho</h1>
+              <h1 className="text-4xl font-bold text-gray-800">Wetho</h1>
             </div>
             <p className="text-gray-600 text-sm">Get current weather conditions and air quality</p>
           </div>
