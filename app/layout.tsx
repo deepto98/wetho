@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Weatho - Weather & Air Quality App",
+  title: "Wetho - Weather & Air Quality App",
   description: "Get real-time weather data, air quality information, and detailed weather conditions for any location worldwide. Built with Next.js, TypeScript, and Tailwind CSS.",
   keywords: "weather, air quality, AQI, temperature, humidity, wind, precipitation, forecast",
-  authors: [{ name: "Weatho Team" }],
-  creator: "Weatho",
-  publisher: "Weatho",
+  authors: [{ name: "Wetho Team" }],
+  creator: "Wetho",
+  publisher: "Wetho",
   formatDetection: {
     email: false,
     address: false,
@@ -26,18 +26,18 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://weatho.vercel.app'),
   openGraph: {
-    title: "Weatho - Weather & Air Quality App",
+    title: "Wetho - Weather & Air Quality App",
     description: "Get real-time weather data and air quality information for any location worldwide.",
     url: 'https://weatho.vercel.app',
-    siteName: 'Weatho',
+    siteName: 'Wetho',
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Weatho - Weather & Air Quality App",
+    title: "Wetho - Weather & Air Quality App",
     description: "Get real-time weather data and air quality information for any location worldwide.",
-    creator: '@weatho',
+    creator: '@wetho',
   },
   robots: {
     index: true,
@@ -70,7 +70,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#3b82f6" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Weatho" />
+        <meta name="apple-mobile-web-app-title" content="Wetho" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-TileColor" content="#3b82f6" />
         <meta name="msapplication-config" content="/browserconfig.xml" />

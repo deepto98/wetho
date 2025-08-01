@@ -1,6 +1,6 @@
 {
-  "name": "Weatho - Weather & Air Quality App",
-  "short_name": "Weatho",
+  "name": "Wetho - Weather & Air Quality App",
+  "short_name": "Wetho",
   "description": "Get real-time weather data and air quality information for any location worldwide",
   "start_url": "/",
   "display": "standalone",

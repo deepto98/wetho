@@ -45,7 +45,7 @@ export default function Home() {
                 <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
                   <Cloud className="w-8 h-8 text-white" />
                 </div>
-                <h1 className="text-4xl font-bold text-gray-800">Weatho</h1>
+                <h1 className="text-4xl font-bold text-gray-800">Wetho</h1>
               </div>
               <p className="text-gray-600">Get current weather conditions and air quality</p>
             </div>
@@ -77,7 +77,7 @@ export default function Home() {
                 <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
                   <Cloud className="w-8 h-8 text-white" />
                 </div>
-                <h1 className="text-4xl font-bold text-gray-800">Weatho</h1>
+                <h1 className="text-4xl font-bold text-gray-800">Wetho</h1>
               </div>
               <p className="text-gray-600">Get current weather conditions and air quality</p>
             </div>
@@ -109,7 +109,7 @@ export default function Home() {
               <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
                 <Cloud className="w-8 h-8 text-white" />
               </div>
-              <h1 className="text-4xl font-bold text-gray-800">Weatho</h1>
+              <h1 className="text-4xl font-bold text-gray-800">Wetho</h1>
             </div>
             <p className="text-gray-600">Get current weather conditions and air quality</p>
           </div>

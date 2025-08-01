@@ -28,7 +28,7 @@ function getTimeAgo(timestamp: number): string {
 }
 
 export function useRecentSearches() {
-  const [rawSearches, setRawSearches, isHydrated] = useLocalStorage<Omit<RecentSearch, 'displayName' | 'timeAgo'>[]>('weatho-recent-searches', []);
+  const [rawSearches, setRawSearches, isHydrated] = useLocalStorage<Omit<RecentSearch, 'displayName' | 'timeAgo'>[]>('wetho-recent-searches', []);
   const [refreshCounter, setRefreshCounter] = useState(0);
 
   // Format searches with useMemo to ensure reactivity
