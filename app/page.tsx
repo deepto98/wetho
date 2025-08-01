@@ -1,6 +1,6 @@
 'use client';
 
-import { RefreshCw, MapPin, Cloud } from 'lucide-react';
+import { RefreshCw, MapPin, Cloud, Github } from 'lucide-react';
 import { useWeather } from '@/hooks/useWeather';
 import { useRecentSearches } from '@/hooks/useRecentSearches';
 import WeatherCard from '@/components/WeatherCard';
@@ -144,10 +144,19 @@ export default function Home() {
           {data && <WeatherCard data={data} />}
 
           {/* Footer */}
-          <footer className="text-center mt-8 py-4 text-gray-500 text-xs">
+          <footer className="text-center mt-4 py-0 text-gray-500 text-xs">
             <p>Weather data provided by OpenWeatherMap</p>
-            <p className="mt-1">
-              Built with Next.js, TypeScript, and Tailwind CSS
+            <p className="mt-1 flex items-center justify-center gap-1">
+              Built with Next.js, TypeScript, and Tailwind CSS by Deepto
+              <a 
+                href="https://www.github.com/deepto98" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center hover:text-gray-700 transition-colors"
+                title="Visit Deepto's GitHub"
+              >
+                <Github className="w-3 h-3 ml-1" />
+              </a>
             </p>
       </footer>
         </div>
