@@ -39,7 +39,7 @@ export default function Home() {
 
         {/* Main Content - Centered regardless of sidebar */}
         <div className="min-h-screen flex items-center justify-center">
-          <div className="w-full max-w-6xl mx-auto px-4 py-8 ml-16 lg:ml-auto">
+          <div className="w-full max-w-6xl mx-auto px-4 py-4 ml-16 lg:ml-auto">
             <div className="text-center mb-8">
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
@@ -102,20 +102,20 @@ export default function Home() {
 
       {/* Main Content - Centered regardless of sidebar */}
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-full max-w-6xl mx-auto px-4 py-8 ml-16 lg:ml-auto">
+        <div className="w-full max-w-6xl mx-auto px-4 py-4 ml-16 lg:ml-auto">
           {/* Header with Logo */}
-          <div className="text-center mb-8">
-            <div className="flex items-center justify-center mb-4">
-              <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
-                <Cloud className="w-8 h-8 text-white" />
+          <div className="text-center mb-6">
+            <div className="flex items-center justify-center mb-3">
+              <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-2 rounded-2xl shadow-lg mr-3">
+                <Cloud className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-4xl font-bold text-gray-800">Wetho</h1>
+              <h1 className="text-3xl font-bold text-gray-800">Wetho</h1>
             </div>
-            <p className="text-gray-600">Get current weather conditions and air quality</p>
+            <p className="text-gray-600 text-sm">Get current weather conditions and air quality</p>
           </div>
 
           {/* Location Search and Refresh - Side by Side */}
-          <div className="flex items-center justify-center gap-4 mb-8 max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-4 mb-6 max-w-2xl mx-auto">
             <LocationSearch
               onLocationSelect={handleLocationSelect}
               currentLocation={data?.location}
@@ -133,7 +133,7 @@ export default function Home() {
           {data && <WeatherCard data={data} />}
 
           {/* Footer */}
-          <footer className="text-center mt-12 py-6 text-gray-500 text-sm">
+          <footer className="text-center mt-8 py-4 text-gray-500 text-xs">
             <p>Weather data provided by OpenWeatherMap</p>
             <p className="mt-1">
               Built with Next.js, TypeScript, and Tailwind CSS

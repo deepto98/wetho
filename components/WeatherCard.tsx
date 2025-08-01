@@ -10,15 +10,15 @@ interface WeatherCardProps {
 const WeatherIcon = React.memo(({ weatherCode, iconCode }: { weatherCode: number; iconCode: string }) => {
   const iconElement = useMemo(() => {
     // Map weather codes to appropriate icons
-    if (weatherCode >= 200 && weatherCode < 300) return <CloudRain className="w-16 h-16" />;
-    if (weatherCode >= 300 && weatherCode < 400) return <CloudRain className="w-16 h-16" />;
-    if (weatherCode >= 500 && weatherCode < 600) return <CloudRain className="w-16 h-16" />;
-    if (weatherCode >= 600 && weatherCode < 700) return <CloudRain className="w-16 h-16" />;
-    if (weatherCode >= 700 && weatherCode < 800) return <Cloud className="w-16 h-16" />;
-    if (weatherCode === 800) return <Sun className="w-16 h-16" />;
-    if (weatherCode > 800) return <Cloud className="w-16 h-16" />;
+    if (weatherCode >= 200 && weatherCode < 300) return <CloudRain className="w-12 h-12" />;
+    if (weatherCode >= 300 && weatherCode < 400) return <CloudRain className="w-12 h-12" />;
+    if (weatherCode >= 500 && weatherCode < 600) return <CloudRain className="w-12 h-12" />;
+    if (weatherCode >= 600 && weatherCode < 700) return <CloudRain className="w-12 h-12" />;
+    if (weatherCode >= 700 && weatherCode < 800) return <Cloud className="w-12 h-12" />;
+    if (weatherCode === 800) return <Sun className="w-12 h-12" />;
+    if (weatherCode > 800) return <Cloud className="w-12 h-12" />;
     
-    return <Sun className="w-16 h-16" />;
+    return <Sun className="w-12 h-12" />;
   }, [weatherCode]);
 
   return iconElement;
@@ -42,20 +42,20 @@ const AQIChart = React.memo(function AQIChart({ currentAQI }: { currentAQI: numb
   const aqiLevels = useMemo(() => [
     { value: 1, label: 'Good', color: 'bg-green-500', textColor: 'text-green-700' },
     { value: 2, label: 'Fair', color: 'bg-yellow-500', textColor: 'text-yellow-700' },
-    { value: 3, label: 'Moderate', color: 'bg-orange-500', textColor: 'text-orange-700' },
-    { value: 4, label: 'Poor', color: 'bg-red-500', textColor: 'text-red-700' },
-    { value: 5, label: 'Very Poor', color: 'bg-purple-500', textColor: 'text-purple-700' }
+    { value: 3, label: 'Moderate', color: 'bg-purple-500', textColor: 'text-purple-700' },
+    { value: 4, label: 'Poor', color: 'bg-orange-500', textColor: 'text-orange-700' },
+    { value: 5, label: 'Very Poor', color: 'bg-red-500', textColor: 'text-red-700' }
   ], []);
 
   const aqiStatus = useMemo(() => getAQIStatus(currentAQI), [currentAQI]);
 
   return (
-    <div className="mt-4">
-      <h3 className="text-sm font-medium text-gray-700 mb-3 text-center">AQI Scale (European Standard)</h3>
+    <div className="mt-3">
+      <h3 className="text-xs font-medium text-gray-700 mb-2 text-center">AQI Scale (European Standard)</h3>
       
       {/* Horizontal Bar Chart */}
       <div className="relative">
-        <div className="flex rounded-lg overflow-hidden h-8 mb-2">
+        <div className="flex rounded-lg overflow-hidden h-6 mb-2">
           {aqiLevels.map((level) => (
             <div
               key={level.value}
@@ -67,8 +67,8 @@ const AQIChart = React.memo(function AQIChart({ currentAQI }: { currentAQI: numb
               
               {/* Current AQI Indicator */}
               {currentAQI === level.value && (
-                <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                  <div className="w-4 h-4 bg-gray-800 transform rotate-45 border-2 border-white shadow-lg"></div>
+                <div className="absolute -top-1 left-1/2 transform -translate-x-1/2">
+                  <div className="w-3 h-3 bg-gray-800 transform rotate-45 border-2 border-white shadow-lg"></div>
                 </div>
               )}
             </div>
@@ -79,17 +79,17 @@ const AQIChart = React.memo(function AQIChart({ currentAQI }: { currentAQI: numb
         <div className="flex justify-between text-xs">
           {aqiLevels.map((level) => (
             <div key={level.value} className={`flex-1 text-center ${level.textColor}`}>
-              <div className="font-medium">{level.label}</div>
+              <div className="font-medium text-xs">{level.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* Current Value Display */}
-      <div className="mt-3 p-2 bg-gray-50 rounded-lg">
+      <div className="mt-2 p-2 bg-gray-50 rounded-lg">
         <div className="text-center">
-          <span className="text-sm text-gray-600">Current AQI: </span>
-          <span className={`text-lg font-bold ${aqiStatus.color}`}>
+          <span className="text-xs text-gray-600">Current AQI: </span>
+          <span className={`text-sm font-bold ${aqiStatus.color}`}>
             {currentAQI} - {aqiStatus.label}
           </span>
         </div>
@@ -155,121 +155,121 @@ export default React.memo(function WeatherCard({ data }: WeatherCardProps) {
   , []);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
+    <div className="max-w-4xl mx-auto p-4 space-y-4">
       {/* Main Weather Card - WHITE TEXT */}
-      <div className="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 rounded-2xl p-8 text-white shadow-2xl">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-2xl">
+        <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-3xl font-bold text-white">{data.location.name}</h1>
-            <p className="text-blue-100 text-lg">
+            <h1 className="text-2xl font-bold text-white">{data.location.name}</h1>
+            <p className="text-blue-100 text-base">
               <FormatLocationName location={data.location} />
             </p>
           </div>
           <div className="text-right">
-            <div className="flex items-center space-x-2 mb-2">
-              <Clock className="w-4 h-4 text-blue-100" />
-              <span className="text-sm text-blue-100 font-medium">
+            <div className="flex items-center space-x-2 mb-1">
+              <Clock className="w-3 h-3 text-blue-100" />
+              <span className="text-xs text-blue-100 font-medium">
                 <CurrentTime />
               </span>
             </div>
-            <p className="text-sm text-blue-100">
+            <p className="text-xs text-blue-100">
               {currentDate}
             </p>
           </div>
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4">
             <div className="text-white">
               <WeatherIcon weatherCode={data.current.weather_code} iconCode={data.current.icon} />
             </div>
             <div>
-              <div className="text-6xl font-bold text-white">{data.current.temp}°</div>
-              <p className="text-xl capitalize text-blue-100">
+              <div className="text-5xl font-bold text-white">{data.current.temp}°</div>
+              <p className="text-lg capitalize text-blue-100">
                 {data.current.weather_description}
               </p>
-              <p className="text-blue-200">
+              <p className="text-blue-200 text-sm">
                 Feels like {data.current.feels_like}°
               </p>
             </div>
           </div>
           
-          <div className="text-right space-y-2">
+          <div className="text-right space-y-1">
             <div className="flex items-center space-x-2">
-              <Sun className="w-4 h-4 text-blue-100" />
-              <span className="text-sm text-blue-100">Sunrise: {data.astronomy.sunrise}</span>
+              <Sun className="w-3 h-3 text-blue-100" />
+              <span className="text-xs text-blue-100">Sunrise: {data.astronomy.sunrise}</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Sun className="w-4 h-4 text-blue-100" />
-              <span className="text-sm text-blue-100">Sunset: {data.astronomy.sunset}</span>
+              <Sun className="w-3 h-3 text-blue-100" />
+              <span className="text-xs text-blue-100">Sunset: {data.astronomy.sunset}</span>
             </div>
           </div>
         </div>
       </div>
 
       {/* Weather Details Grid - BLACK TEXT */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-xl p-6 shadow-lg">
-          <div className="flex items-center space-x-3 mb-2">
-            <Droplets className="w-5 h-5 text-blue-500" />
-            <span className="text-gray-800 font-medium">Humidity</span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div className="bg-white rounded-xl p-4 shadow-lg">
+          <div className="flex items-center space-x-2 mb-1">
+            <Droplets className="w-4 h-4 text-blue-500" />
+            <span className="text-gray-800 font-medium text-sm">Humidity</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{data.current.humidity}%</p>
+          <p className="text-xl font-bold text-gray-900">{data.current.humidity}%</p>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-lg">
-          <div className="flex items-center space-x-3 mb-2">
-            <Wind className="w-5 h-5 text-gray-500" />
-            <span className="text-gray-800 font-medium">Wind</span>
+        <div className="bg-white rounded-xl p-4 shadow-lg">
+          <div className="flex items-center space-x-2 mb-1">
+            <Wind className="w-4 h-4 text-gray-500" />
+            <span className="text-gray-800 font-medium text-sm">Wind</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{data.current.wind_speed} m/s</p>
+          <p className="text-xl font-bold text-gray-900">{data.current.wind_speed} m/s</p>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-lg">
-          <div className="flex items-center space-x-3 mb-2">
-            <Eye className="w-5 h-5 text-indigo-500" />
-            <span className="text-gray-800 font-medium">Visibility</span>
+        <div className="bg-white rounded-xl p-4 shadow-lg">
+          <div className="flex items-center space-x-2 mb-1">
+            <Eye className="w-4 h-4 text-indigo-500" />
+            <span className="text-gray-800 font-medium text-sm">Visibility</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{data.current.visibility} km</p>
+          <p className="text-xl font-bold text-gray-900">{data.current.visibility} km</p>
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-lg">
-          <div className="flex items-center space-x-3 mb-2">
-            <Gauge className="w-5 h-5 text-green-500" />
-            <span className="text-gray-800 font-medium">Pressure</span>
+        <div className="bg-white rounded-xl p-4 shadow-lg">
+          <div className="flex items-center space-x-2 mb-1">
+            <Gauge className="w-4 h-4 text-green-500" />
+            <span className="text-gray-800 font-medium text-sm">Pressure</span>
           </div>
-          <p className="text-2xl font-bold text-gray-900">{data.current.pressure} hPa</p>
+          <p className="text-xl font-bold text-gray-900">{data.current.pressure} hPa</p>
         </div>
       </div>
 
       {/* Air Quality Card with Chart - BLACK TEXT */}
-      <div className="bg-white rounded-2xl p-6 shadow-lg">
-        <h2 className="text-xl font-bold text-gray-900 mb-6 text-center">Air Quality</h2>
+      <div className="bg-white rounded-2xl p-4 shadow-lg">
+        <h2 className="text-lg font-bold text-gray-900 mb-4 text-center">Air Quality</h2>
         
         {/* AQI Visual Chart */}
         <AQIChart currentAQI={data.air_quality.aqi} />
 
         {/* Additional Air Quality Details */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-6 pt-6 border-t border-gray-200">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4 pt-4 border-t border-gray-200">
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">CO</p>
-            <p className="font-semibold text-gray-900">{data.air_quality.co.toFixed(1)}</p>
+            <p className="text-xs text-gray-600 mb-1">CO</p>
+            <p className="font-semibold text-gray-900 text-sm">{data.air_quality.co.toFixed(1)}</p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">NO₂</p>
-            <p className="font-semibold text-gray-900">{data.air_quality.no2.toFixed(1)}</p>
+            <p className="text-xs text-gray-600 mb-1">NO₂</p>
+            <p className="font-semibold text-gray-900 text-sm">{data.air_quality.no2.toFixed(1)}</p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">O₃</p>
-            <p className="font-semibold text-gray-900">{data.air_quality.o3.toFixed(1)}</p>
+            <p className="text-xs text-gray-600 mb-1">O₃</p>
+            <p className="font-semibold text-gray-900 text-sm">{data.air_quality.o3.toFixed(1)}</p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">SO₂</p>
-            <p className="font-semibold text-gray-900">{data.air_quality.so2.toFixed(1)}</p>
+            <p className="text-xs text-gray-600 mb-1">SO₂</p>
+            <p className="font-semibold text-gray-900 text-sm">{data.air_quality.so2.toFixed(1)}</p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-600 mb-1">PM2.5</p>
-            <p className="font-semibold text-gray-900">{data.air_quality.pm2_5.toFixed(1)}</p>
+            <p className="text-xs text-gray-600 mb-1">PM2.5</p>
+            <p className="font-semibold text-gray-900 text-sm">{data.air_quality.pm2_5.toFixed(1)}</p>
           </div>
         </div>
       </div>
