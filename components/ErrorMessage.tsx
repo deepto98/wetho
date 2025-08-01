@@ -17,9 +17,10 @@ export default function ErrorMessage({ message, onRetry }: ErrorMessageProps) {
         {onRetry && (
           <button
             onClick={onRetry}
-            className="inline-flex items-center px-4 py-2 bg-red-100 hover:bg-red-200 text-red-800 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            aria-label="Retry loading weather data"
+            title="Retry loading weather data"
           >
-            <RefreshCw className="w-4 h-4 mr-2" />
             Try Again
           </button>
         )}

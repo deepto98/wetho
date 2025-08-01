@@ -135,6 +135,8 @@ export default function Home() {
               onClick={refresh}
               disabled={loading}
               className="flex items-center space-x-2 px-4 py-3 bg-white hover:bg-gray-50 disabled:bg-gray-100 border border-gray-300 rounded-xl shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed whitespace-nowrap"
+              aria-label={loading ? "Getting current location..." : "Get current location"}
+              title={loading ? "Getting current location..." : "Get current location"}
             >
               <MapPin className={`w-4 h-4 text-gray-700 ${loading ? 'animate-pulse' : ''}`} />
             </button>

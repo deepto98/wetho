@@ -88,6 +88,7 @@ export default function RecentSearchesSidebar({
             onClick={() => setIsCollapsed(!isCollapsed)}
             className={`${isCollapsed ? 'p-3' : 'absolute right-4 p-2'} rounded-lg hover:bg-blue-100 transition-colors text-blue-600`}
             title={isCollapsed ? "Show Recent Searches" : "Hide Recent Searches"}
+            aria-label={isCollapsed ? "Show Recent Searches" : "Hide Recent Searches"}
           >
             {isCollapsed ? <History className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
           </button>
@@ -106,9 +107,9 @@ export default function RecentSearchesSidebar({
               ) : recentSearches.length === 0 ? (
                 // Empty state after hydration
                 <div className="p-6 text-center">
-                  <MapPin className="w-12 h-12 text-gray-300 mx-auto mb-4" />
+                  <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
                   <p className="text-gray-500 text-sm">No recent searches</p>
-                  <p className="text-gray-400 text-xs mt-1">Search for a location to see it here</p>
+                  <p className="text-gray-500 text-xs mt-1">Search for a location to see it here</p>
                 </div>
               ) : (
                 // Searches loaded
@@ -118,6 +119,8 @@ export default function RecentSearchesSidebar({
                     <button
                       onClick={clearRecentSearches}
                       className="flex items-center space-x-2 text-sm text-red-600 hover:text-red-700 transition-colors"
+                      aria-label="Clear all recent searches"
+                      title="Clear all recent searches"
                     >
                       <Trash2 className="w-4 h-4" />
                       <span>Clear All</span>
@@ -140,7 +143,7 @@ export default function RecentSearchesSidebar({
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center space-x-2 mb-1">
                               <MapPin className={`w-4 h-4 flex-shrink-0 ${
-                                isCurrentLocation(search) ? 'text-blue-600' : 'text-gray-400'
+                                isCurrentLocation(search) ? 'text-blue-600' : 'text-gray-500'
                               }`} />
                               <h3 className={`font-medium text-sm truncate ${
                                 isCurrentLocation(search) ? 'text-blue-900' : 'text-gray-900'
@@ -157,8 +160,8 @@ export default function RecentSearchesSidebar({
                             
                             <div className="flex items-center justify-between mt-2">
                               <div className="flex items-center space-x-1">
-                                <Clock className="w-3 h-3 text-gray-400" />
-                                <span className="text-xs text-gray-400">{search.timeAgo}</span>
+                                <Clock className="w-3 h-3 text-gray-500" />
+                                <span className="text-xs text-gray-500">{search.timeAgo}</span>
                               </div>
                               
                               {search.searchCount > 1 && (
@@ -176,6 +179,8 @@ export default function RecentSearchesSidebar({
                               removeRecentSearch(search);
                             }}
                             className="opacity-0 group-hover:opacity-100 transition-opacity p-1 rounded hover:bg-red-100 text-red-500 hover:text-red-600"
+                            aria-label={`Remove ${search.displayName} from recent searches`}
+                            title={`Remove ${search.displayName} from recent searches`}
                           >
                             <X className="w-4 h-4" />
                           </button>
@@ -208,6 +213,7 @@ export default function RecentSearchesSidebar({
                       : 'hover:bg-gray-100 text-gray-600'
                   }`}
                   title={search.displayName}
+                  aria-label={`View weather for ${search.displayName}`}
                 >
                   <MapPin className="w-5 h-5 mx-auto" />
                 </button>

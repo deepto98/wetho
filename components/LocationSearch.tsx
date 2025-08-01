@@ -98,9 +98,9 @@ export default function LocationSearch({ onLocationSelect, currentLocation }: Lo
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           {isSearching ? (
-            <Loader2 className="h-5 w-5 text-gray-400 animate-spin" />
+            <Loader2 className="h-5 w-5 text-gray-500 animate-spin" />
           ) : (
-            <Search className="h-5 w-5 text-gray-400" />
+            <Search className="h-5 w-5 text-gray-500" />
           )}
         </div>
         <input
@@ -124,7 +124,7 @@ export default function LocationSearch({ onLocationSelect, currentLocation }: Lo
               onClick={() => handleLocationSelect(location)}
               className="w-full px-4 py-3 text-left hover:bg-gray-50 focus:bg-gray-50 focus:outline-none first:rounded-t-xl last:rounded-b-xl flex items-center space-x-3"
             >
-              <MapPin className="h-4 w-4 text-gray-400 flex-shrink-0" />
+              <MapPin className="h-4 w-4 text-gray-500 flex-shrink-0" />
               <div>
                 <p className="text-sm font-medium text-gray-900">
                   {location.name}
