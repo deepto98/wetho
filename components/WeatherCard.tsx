@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { WeatherData } from '@/lib/types';
 import { Cloud, Sun, CloudRain, Wind, Eye, Droplets, Gauge, Clock } from 'lucide-react';
 
@@ -5,18 +6,25 @@ interface WeatherCardProps {
   data: WeatherData;
 }
 
-function getWeatherIcon(weatherCode: number, iconCode: string) {
-  // Map weather codes to appropriate icons
-  if (weatherCode >= 200 && weatherCode < 300) return <CloudRain className="w-16 h-16" />;
-  if (weatherCode >= 300 && weatherCode < 400) return <CloudRain className="w-16 h-16" />;
-  if (weatherCode >= 500 && weatherCode < 600) return <CloudRain className="w-16 h-16" />;
-  if (weatherCode >= 600 && weatherCode < 700) return <CloudRain className="w-16 h-16" />;
-  if (weatherCode >= 700 && weatherCode < 800) return <Cloud className="w-16 h-16" />;
-  if (weatherCode === 800) return <Sun className="w-16 h-16" />;
-  if (weatherCode > 800) return <Cloud className="w-16 h-16" />;
-  
-  return <Sun className="w-16 h-16" />;
-}
+// Memoize weather icon calculation
+const WeatherIcon = React.memo(({ weatherCode, iconCode }: { weatherCode: number; iconCode: string }) => {
+  const iconElement = useMemo(() => {
+    // Map weather codes to appropriate icons
+    if (weatherCode >= 200 && weatherCode < 300) return <CloudRain className="w-16 h-16" />;
+    if (weatherCode >= 300 && weatherCode < 400) return <CloudRain className="w-16 h-16" />;
+    if (weatherCode >= 500 && weatherCode < 600) return <CloudRain className="w-16 h-16" />;
+    if (weatherCode >= 600 && weatherCode < 700) return <CloudRain className="w-16 h-16" />;
+    if (weatherCode >= 700 && weatherCode < 800) return <Cloud className="w-16 h-16" />;
+    if (weatherCode === 800) return <Sun className="w-16 h-16" />;
+    if (weatherCode > 800) return <Cloud className="w-16 h-16" />;
+    
+    return <Sun className="w-16 h-16" />;
+  }, [weatherCode]);
+
+  return iconElement;
+});
+
+WeatherIcon.displayName = 'WeatherIcon';
 
 function getAQIStatus(aqi: number) {
   // European AQI ranges (1-5 scale)
@@ -30,14 +38,16 @@ function getAQIStatus(aqi: number) {
   }
 }
 
-function AQIChart({ currentAQI }: { currentAQI: number }) {
-  const aqiLevels = [
+const AQIChart = React.memo(function AQIChart({ currentAQI }: { currentAQI: number }) {
+  const aqiLevels = useMemo(() => [
     { value: 1, label: 'Good', color: 'bg-green-500', textColor: 'text-green-700' },
     { value: 2, label: 'Fair', color: 'bg-yellow-500', textColor: 'text-yellow-700' },
     { value: 3, label: 'Moderate', color: 'bg-orange-500', textColor: 'text-orange-700' },
     { value: 4, label: 'Poor', color: 'bg-red-500', textColor: 'text-red-700' },
     { value: 5, label: 'Very Poor', color: 'bg-purple-500', textColor: 'text-purple-700' }
-  ];
+  ], []);
+
+  const aqiStatus = useMemo(() => getAQIStatus(currentAQI), [currentAQI]);
 
   return (
     <div className="mt-4">
@@ -79,35 +89,70 @@ function AQIChart({ currentAQI }: { currentAQI: number }) {
       <div className="mt-3 p-2 bg-gray-50 rounded-lg">
         <div className="text-center">
           <span className="text-sm text-gray-600">Current AQI: </span>
-          <span className={`text-lg font-bold ${getAQIStatus(currentAQI).color}`}>
-            {currentAQI} - {getAQIStatus(currentAQI).label}
+          <span className={`text-lg font-bold ${aqiStatus.color}`}>
+            {currentAQI} - {aqiStatus.label}
           </span>
         </div>
       </div>
     </div>
   );
-}
+});
 
-function formatLocationName(location: { name: string; state?: string; country: string }) {
-  const parts = [location.name];
-  if (location.state) {
-    parts.push(location.state);
-  }
-  parts.push(location.country);
-  return parts.join(', ');
-}
+// Memoize location formatting
+const FormatLocationName = React.memo(({ location }: { location: { name: string; state?: string; country: string } }) => {
+  const displayName = useMemo(() => {
+    const parts = [location.name];
+    if (location.state) {
+      parts.push(location.state);
+    }
+    parts.push(location.country);
+    return parts.join(', ');
+  }, [location.name, location.state, location.country]);
 
-function getCurrentTime() {
-  return new Date().toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true
-  });
-}
+  return <span>{displayName}</span>;
+});
 
-export default function WeatherCard({ data }: WeatherCardProps) {
-  const aqiStatus = getAQIStatus(data.air_quality.aqi);
+FormatLocationName.displayName = 'LocationName';
+
+// Memoize current time (updates every second but prevents unnecessary renders)
+const CurrentTime = React.memo(function CurrentTime() {
+  const [currentTime, setCurrentTime] = React.useState(() => 
+    new Date().toLocaleTimeString('en-US', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    })
+  );
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      }));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return <span>{currentTime}</span>;
+});
+
+export default React.memo(function WeatherCard({ data }: WeatherCardProps) {
+  // Memoize expensive calculations
+  const aqiStatus = useMemo(() => getAQIStatus(data.air_quality.aqi), [data.air_quality.aqi]);
+  
+  const currentDate = useMemo(() => 
+    new Date().toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    })
+  , []);
 
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-6">
@@ -116,22 +161,19 @@ export default function WeatherCard({ data }: WeatherCardProps) {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-3xl font-bold text-white">{data.location.name}</h1>
-            <p className="text-blue-100 text-lg">{formatLocationName(data.location)}</p>
+            <p className="text-blue-100 text-lg">
+              <FormatLocationName location={data.location} />
+            </p>
           </div>
           <div className="text-right">
             <div className="flex items-center space-x-2 mb-2">
               <Clock className="w-4 h-4 text-blue-100" />
               <span className="text-sm text-blue-100 font-medium">
-                {getCurrentTime()}
+                <CurrentTime />
               </span>
             </div>
             <p className="text-sm text-blue-100">
-              {new Date().toLocaleDateString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
+              {currentDate}
             </p>
           </div>
         </div>
@@ -139,7 +181,7 @@ export default function WeatherCard({ data }: WeatherCardProps) {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <div className="text-white">
-              {getWeatherIcon(data.current.weather_code, data.current.icon)}
+              <WeatherIcon weatherCode={data.current.weather_code} iconCode={data.current.icon} />
             </div>
             <div>
               <div className="text-6xl font-bold text-white">{data.current.temp}°</div>
@@ -233,4 +275,4 @@ export default function WeatherCard({ data }: WeatherCardProps) {
       </div>
     </div>
   );
-} 
+}); 
