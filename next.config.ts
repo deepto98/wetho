@@ -4,23 +4,31 @@ const nextConfig: NextConfig = {
   // Basic Performance Optimizations
   compress: true,
   poweredByHeader: false,
-  
-  // Image Optimization
-  images: {
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 31536000, // 1 year
-  },
-
+ 
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: ['lucide-react', 'date-fns'],
+  },
+
+  // Bundle optimization
+  webpack: (config, { dev, isServer }) => {
+    // Optimize production builds
+    if (!dev) {
+      config.optimization = {
+        ...config.optimization,
+        usedExports: true,
+        sideEffects: false,
+      };
+    }
+
+    return config;
   },
 
   // Headers for basic caching
   async headers() {
     return [
       {
-        source: '/favicon.ico',
+        source: '/favicon.svg',
         headers: [
           {
             key: 'Cache-Control',
