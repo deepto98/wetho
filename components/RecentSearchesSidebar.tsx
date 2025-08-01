@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MapPin, Clock, X, Trash2, ChevronLeft, ChevronRight, History, Loader2 } from 'lucide-react';
 import { Location } from '@/lib/types';
 import { useRecentSearches, RecentSearch } from '@/hooks/useRecentSearches';
@@ -20,13 +20,32 @@ export default function RecentSearchesSidebar({
   clearRecentSearches: propClearRecentSearches,
   isHydrated: propIsHydrated
 }: RecentSearchesSidebarProps) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  // Start with collapsed state, will be updated based on screen size
+  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
+  
   const { 
     recentSearches: hookRecentSearches, 
     removeRecentSearch: hookRemoveRecentSearch, 
     clearRecentSearches: hookClearRecentSearches, 
     isHydrated: hookIsHydrated 
   } = useRecentSearches();
+
+  // Set responsive default state after component mounts
+  useEffect(() => {
+    setIsMounted(true);
+    const checkScreenSize = () => {
+      const isDesktop = window.innerWidth >= 1024; // lg breakpoint
+      setIsCollapsed(!isDesktop); // Open on desktop, closed on mobile
+    };
+
+    // Set initial state
+    checkScreenSize();
+
+    // Listen for window resize
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // Use prop values if provided, otherwise use hook values
   const recentSearches = propRecentSearches || hookRecentSearches;
