@@ -125,10 +125,7 @@ export default function Home() {
               disabled={loading}
               className="flex items-center space-x-2 px-4 py-3 bg-white hover:bg-gray-50 disabled:bg-gray-100 border border-gray-300 rounded-xl shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:cursor-not-allowed whitespace-nowrap"
             >
-              <RefreshCw className={`w-4 h-4 text-gray-700 ${loading ? 'animate-spin' : ''}`} />
-              <span className="font-medium text-gray-900">
-                {loading ? 'Updating...' : 'Refresh'}
-              </span>
+              <MapPin className={`w-4 h-4 text-gray-700 ${loading ? 'animate-pulse' : ''}`} />
             </button>
           </div>
 
