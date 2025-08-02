@@ -157,51 +157,113 @@ export default React.memo(function WeatherCard({ data }: WeatherCardProps) {
   return (
     <div className="max-w-4xl mx-auto p-4 space-y-4">
       {/* Main Weather Card - WHITE TEXT */}
-      <div className="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 rounded-2xl p-6 text-white shadow-2xl">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h1 className="text-2xl font-bold text-white">{data.location.name}</h1>
-            <p className="text-blue-100 text-base">
+      <div className="bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 rounded-2xl p-6 md:p-8 text-white shadow-2xl">
+        {/* Mobile Layout */}
+        <div className="block md:hidden">
+          {/* Top: Location and Temperature on same line */}
+          <div className="flex items-center justify-between mb-2">
+            <div>
+              <h1 className="text-2xl font-bold text-white">{data.location.name}</h1>
+              <p className="text-blue-100 text-sm">
+                <FormatLocationName location={data.location} />
+              </p>
+            </div>
+            <div className="flex items-center space-x-3">
+              <div className="text-white">
+                <WeatherIcon weatherCode={data.current.weather_code} iconCode={data.current.icon} />
+              </div>
+              <div className="text-right">
+                <div className="text-4xl font-bold text-white">{data.current.temp}°</div>
+                <p className="text-blue-200 text-xs">Feels like {data.current.feels_like}°</p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Weather Condition */}
+          <div className="text-center mb-4">
+            <p className="text-lg capitalize text-blue-100">
+              {data.current.weather_description}
+            </p>
+          </div>
+          
+          {/* Bottom: Date, Sunrise, Sunset in a row */}
+          <div className="flex items-center justify-between text-center">
+            <div className="flex-1">
+              <div className="flex items-center justify-center space-x-1 mb-1">
+                <Clock className="w-3 h-3 text-blue-100" />
+                <span className="text-xs text-blue-100 font-medium">
+                  <CurrentTime />
+                </span>
+              </div>
+              <p className="text-xs text-blue-100">{currentDate}</p>
+            </div>
+            
+            <div className="flex-1">
+              <div className="flex items-center justify-center space-x-1">
+                <Sun className="w-3 h-3 text-blue-100" />
+                <span className="text-xs text-blue-100">Sunrise</span>
+              </div>
+              <p className="text-xs text-blue-100">{data.astronomy.sunrise}</p>
+            </div>
+            
+            <div className="flex-1">
+              <div className="flex items-center justify-center space-x-1">
+                <Sun className="w-3 h-3 text-blue-100" />
+                <span className="text-xs text-blue-100">Sunset</span>
+              </div>
+              <p className="text-xs text-blue-100">{data.astronomy.sunset}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden md:flex md:items-center md:justify-between">
+          {/* Weather Icon and Temperature */}
+          <div className="flex-1">
+            <div className="flex items-center space-x-4 mb-2">
+              <div className="text-white">
+                <WeatherIcon weatherCode={data.current.weather_code} iconCode={data.current.icon} />
+              </div>
+              <div>
+                <div className="text-5xl font-bold text-white">{data.current.temp}°</div>
+              </div>
+            </div>
+            <p className="text-lg capitalize text-blue-100">
+              {data.current.weather_description}
+            </p>
+            <p className="text-blue-200 text-sm">
+              Feels like {data.current.feels_like}°
+            </p>
+          </div>
+          
+          {/* Location Info - Always centered */}
+          <div className="flex-1 text-center">
+            <h1 className="text-3xl font-bold text-white">{data.location.name}</h1>
+            <p className="text-blue-100 text-lg">
               <FormatLocationName location={data.location} />
             </p>
           </div>
-          <div className="text-right">
-            <div className="flex items-center space-x-2 mb-1">
+          
+          {/* Date and Sunrise/Sunset */}
+          <div className="flex-1 text-right">
+            <div className="flex items-center justify-end space-x-2 mb-1">
               <Clock className="w-3 h-3 text-blue-100" />
               <span className="text-xs text-blue-100 font-medium">
                 <CurrentTime />
               </span>
             </div>
-            <p className="text-xs text-blue-100">
+            <p className="text-xs text-blue-100 mb-3">
               {currentDate}
             </p>
-          </div>
-        </div>
-
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="text-white">
-              <WeatherIcon weatherCode={data.current.weather_code} iconCode={data.current.icon} />
-            </div>
-            <div>
-              <div className="text-5xl font-bold text-white">{data.current.temp}°</div>
-              <p className="text-lg capitalize text-blue-100">
-                {data.current.weather_description}
-              </p>
-              <p className="text-blue-200 text-sm">
-                Feels like {data.current.feels_like}°
-              </p>
-            </div>
-          </div>
-          
-          <div className="text-right space-y-1">
-            <div className="flex items-center space-x-2">
-              <Sun className="w-3 h-3 text-blue-100" />
-              <span className="text-xs text-blue-100">Sunrise: {data.astronomy.sunrise}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Sun className="w-3 h-3 text-blue-100" />
-              <span className="text-xs text-blue-100">Sunset: {data.astronomy.sunset}</span>
+            <div className="space-y-1">
+              <div className="flex items-center justify-end space-x-2">
+                <Sun className="w-3 h-3 text-blue-100" />
+                <span className="text-xs text-blue-100">Sunrise: {data.astronomy.sunrise}</span>
+              </div>
+              <div className="flex items-center justify-end space-x-2">
+                <Sun className="w-3 h-3 text-blue-100" />
+                <span className="text-xs text-blue-100">Sunset: {data.astronomy.sunset}</span>
+              </div>
             </div>
           </div>
         </div>
