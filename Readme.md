@@ -361,8 +361,15 @@ export const metadata: Metadata = {
 />
 ```
 
+#### d. SEO Audit & Compliance  
+After a complete SEO audit, I added these:
 
+- **robots.txt**: Created with proper crawling rules, disallow patterns for security, and sitemap reference
+- **sitemap.xml**: XML sitemap with schema validation, priority settings, and future-ready structure
+- **Custom 404 Page**: Weather-themed error page with navigation options and educational content
 
+- **Content Optimization:**: Optimized title tag, meta description and headings to align with best practises. 
+ 
 ## Security Implementation
 
 ### 1. Content Security Policy Headers
