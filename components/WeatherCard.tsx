@@ -55,7 +55,7 @@ const AQIChart = React.memo(function AQIChart({ currentAQI }: { currentAQI: numb
       
       {/* Horizontal Bar Chart */}
       <div className="relative">
-        <div className="flex rounded-lg overflow-hidden h-6 mb-2">
+        <div className="flex rounded-lg overflow-hidden h-8 mb-2">
           {aqiLevels.map((level) => (
             <div
               key={level.value}
