@@ -1,5 +1,25 @@
-# Wetho  
+<div align="center">
 
+# 🌤️ Wetho 
+
+<img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js 15" />
+<img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+
+[![Demo](https://img.shields.io/badge/🌐_Live_Demo-4285F4?style=for-the-badge)](https://wetho.netlify.app)
+[![Tests](https://img.shields.io/badge/Tests-42_Passing-00C851?style=for-the-badge&logo=jest)](https://github.com/deepto98/weather-app)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-100-FF6F00?style=for-the-badge&logo=lighthouse)](https://lighthouse-metrics.com/lighthouse/checks/4c28c1f1-8809-4826-9f17-efbb29f6db35)
+[![Security](https://img.shields.io/badge/Security-A-00C851?style=for-the-badge&logo=security)](https://securityheaders.com/?q=https%3A%2F%2Fwetho.netlify.app%2F&followRedirects=on)
+
+**Real-time weather data with air quality monitoring and intelligent location search**
+
+[📱 **Live Demo**](https://wetho.netlify.app) • [📊 **Performance**](https://pagespeed.web.dev/analysis/https-wetho-netlify-app/2rgmsi3tr8) • [🔒 **Security Report**](https://securityheaders.com/?q=https%3A%2F%2Fwetho.netlify.app%2F&followRedirects=on)
+
+</div>
+
+---
+  
 ## Table of Contents
 1. [Overview](#overview)
 2. [Project Architecture](#Project-architecture)
@@ -460,7 +480,7 @@ NODE_ENV=production
  
 ## Performance and Security Monitoring
 - **Lighthouse**:  https://lighthouse-metrics.com/lighthouse/checks/4c28c1f1-8809-4826-9f17-efbb29f6db35
-- **Page Speed Insights **:  https://pagespeed.web.dev/analysis/https-wetho-netlify-app/2rgmsi3tr8
+- **Page Speed Insights**:  https://pagespeed.web.dev/analysis/https-wetho-netlify-app/2rgmsi3tr8
 - **Securityheaders.com**:  https://securityheaders.com/?q=https%3A%2F%2Fwetho.netlify.app%2F&followRedirects=on
 - **Immuniweb** : https://www.immuniweb.com/websec/wetho.netlify.app/IKuZJsWc/
 - **Sssllabs** : https://www.ssllabs.com/ssltest/analyze.html?d=wetho.netlify.app
