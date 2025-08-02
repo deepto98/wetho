@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🌤️ Wetho 
+<img src="public/favicon.svg" alt="Wetho Logo" width="80" height="80" />
+
+# Wetho
 
 <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js 15" />
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
