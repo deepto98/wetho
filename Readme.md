@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/favicon.svg" alt="Wetho Logo" width="80" height="80" />
+<img src="public/apple-touch-icon.png" alt="Wetho Logo" width="80" height="80" />
 
 # Wetho
 

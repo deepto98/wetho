@@ -8,6 +8,7 @@ import LocationSearch from '@/components/LocationSearch';
 import LoadingWeather from '@/components/LoadingWeather';
 import ErrorMessage from '@/components/ErrorMessage';
 import RecentSearchesSidebar from '@/components/RecentSearchesSidebar';
+
 import { Location } from '@/lib/types';
 
 export default function Home() {
@@ -32,11 +33,10 @@ export default function Home() {
     console.log('📞 Calling addRecentSearch...');
     addRecentSearch(location);
     console.log('✅ handleLocationSelect complete');
-    console.log('📊 Current recent searches count:', recentSearches.length);
   };
 
   if (loading && !data) {
-  return (
+    return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
         {/* Sidebar */}
         <RecentSearchesSidebar
@@ -56,7 +56,7 @@ export default function Home() {
                 <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
                   <Cloud className="w-8 h-8 text-white" />
                 </div>
-                <h1 className="text-4xl font-bold text-gray-800">Wetho</h1>
+                <h2 className="text-4xl font-bold text-gray-800">Wetho</h2>
               </div>
               <p className="text-gray-600">Get current weather conditions and air quality</p>
             </div>
@@ -82,18 +82,19 @@ export default function Home() {
 
         {/* Main Content - Centered regardless of sidebar */}
         <div className="min-h-screen flex items-center justify-center">
-          <div className="w-full max-w-6xl mx-auto px-4 py-8 ml-16 lg:ml-auto">
+          <div className="w-full max-w-6xl mx-auto px-4 py-4 ml-16 lg:ml-auto">
             <div className="text-center mb-8">
               <div className="flex items-center justify-center mb-4">
                 <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-2xl shadow-lg mr-3">
                   <Cloud className="w-8 h-8 text-white" />
                 </div>
-                <h1 className="text-4xl font-bold text-gray-800">Wetho</h1>
+                <h2 className="text-4xl font-bold text-gray-800">Wetho</h2>
               </div>
               <p className="text-gray-600">Get current weather conditions and air quality</p>
             </div>
             <ErrorMessage message={error} onRetry={refresh} />
           </div>
+
         </div>
       </div>
     );
@@ -160,7 +161,7 @@ export default function Home() {
                 <Github className="w-3 h-3 ml-1" />
               </a>
             </p>
-      </footer>
+          </footer>
         </div>
       </div>
     </div>

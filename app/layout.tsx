@@ -17,8 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Wetho - Weather & Air Quality App",
-  description: "Get real-time weather data, air quality information, and detailed weather conditions for any location worldwide. Built with Next.js, TypeScript, and Tailwind CSS.",
+  title: "Wetho - Real-time Weather & Air Quality Monitoring App",
+  description: "Get accurate real-time weather data and air quality information for any location worldwide. Features GPS location, search history, and detailed forecasts.",
   keywords: "weather, air quality, AQI, temperature, humidity, wind, precipitation, forecast, real-time weather, weather app, climate data",
   authors: [{ name: "Wetho Team" }],
   creator: "Wetho",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "Wetho - Weather & Air Quality App",
-    description: "Get real-time weather data and air quality information for any location worldwide.",
+    title: "Wetho - Real-time Weather & Air Quality Monitoring App",
+    description: "Get accurate real-time weather data and air quality information for any location worldwide.",
     url: 'https://weatho.vercel.app',
     siteName: 'Wetho',
     locale: 'en_US',
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Wetho - Weather & Air Quality App",
-    description: "Get real-time weather data and air quality information for any location worldwide.",
+    title: "Wetho - Real-time Weather & Air Quality Monitoring App",
+    description: "Get accurate real-time weather data and air quality information for any location worldwide.",
     creator: '@wetho',
     images: ['/twitter-image.png'],
   },
