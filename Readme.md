@@ -223,18 +223,11 @@ Used to fetch the device's coordinates, with a default fallback to New York's lo
 
 ## Performance Optimizations
 
-### 1. Next.js Configuration Optimizations
+### 1. Next.js Bundle Optimizations
 ```typescript
 const nextConfig = {
   // Gzip compression for all assets
   compress: true,
-  
-  // Image optimization
-  images: {
-    formats: ['image/webp', 'image/avif'],
-    minimumCacheTTL: 60,
-    dangerouslyAllowSVG: true,
-  },
   
   // Bundle optimization
   webpack: (config) => ({
@@ -253,7 +246,28 @@ const nextConfig = {
 ```
 
 ### 2. React Performance Optimizations
-1. **Component Memoization**: `React.memo` for expensive components
+1. **Component Memoization**: `React.memo` for expensive components - WeatherCard.tsx 
+```typescript
+// React.memo for expensive components
+const WeatherCard = React.memo<WeatherCardProps>(({ data }) => {
+  // Memoized calculations
+  const locationDisplay = useMemo(() => 
+    formatLocationName(data.location), [data.location]
+  )
+  
+  const aqiLevel = useMemo(() => 
+    getAQILevel(data.air_quality.aqi), [data.air_quality.aqi]
+  )
+
+  return (
+    <div className="bg-white rounded-xl shadow-lg p-6">
+      {/* Weather display */}
+    </div>
+  )
+})
+ 
+```
+
 2. **Hook Memoization**: `useMemo` and `useCallback` for computed values
 3. **Code Splitting**: Dynamic imports for non-critical components
 4. **Request Deduplication**: AbortController for canceling stale requests
@@ -272,14 +286,9 @@ document.addEventListener('visibilitychange', () => {
 });
 ```
 
-### 4. Bundle Analysis
-- **Initial Bundle**: ~85KB gzipped
-- **Largest Dependencies**: React (42KB), Next.js (28KB), Tailwind (15KB)
-- **Code Splitting**: Automatic route-based splitting
-- **Tree Shaking**: Unused code elimination
+ 
 
-
-### 5. SEO Optimizations
+### 4. SEO Optimizations
 
 #### a. Meta Tags & SEO
 ```typescript
@@ -317,7 +326,7 @@ export const metadata: Metadata = {
 }
 ```
 
-#### c. Font Optimization
+#### c. Font Optimization by preloading 
 ```typescript
 // Preload critical fonts
 <link
@@ -333,7 +342,7 @@ export const metadata: Metadata = {
 
 ## Security Implementation
 
-### 1. Content Security Policy
+### 1. Content Security Policy Headers
 ```typescript
 // Production CSP headers
 "Content-Security-Policy": [
@@ -346,7 +355,7 @@ export const metadata: Metadata = {
 ].join('; ')
 ```
 
-### 2. Security Headers
+### 2. Other Security Headers
 - **X-Frame-Options**: `DENY`
 - **X-Content-Type-Options**: `nosniff`
 - **Referrer-Policy**: `origin-when-cross-origin`
@@ -424,7 +433,7 @@ Tests:       42 passed, 42 total
 Snapshots:   0 total
 Time:        6.514 s
 
-[Detailed report at [Report]( coverage/lcov-report/index.html)  ]
+To generate the report, run: `npm test -- --coverage --coverageDirectory='coverage'` and view the report at `coverage/lcov-report/index.html` 
 
 ## Deployment
 

@@ -81,14 +81,12 @@ const nextConfig: NextConfig = {
               'interest-cohort=()',
               'payment=()',
               'usb=()',
-              'bluetooth=()',
               'accelerometer=()',
               'gyroscope=()',
               'magnetometer=()',
               'display-capture=()',
               'fullscreen=(self)',
-              'web-share=(self)'
-            ].join(', ')
+             ].join(', ')
           },
           // Prevent MIME type sniffing
           {
