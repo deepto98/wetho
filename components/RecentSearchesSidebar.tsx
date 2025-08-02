@@ -81,7 +81,7 @@ export default function RecentSearchesSidebar({
           {!isCollapsed && (
             <div className="flex items-center space-x-2">
               <History className="w-5 h-5 text-blue-600" />
-              <h2 className="text-lg font-semibold text-gray-800">Recent Searches</h2>
+              <h2 className="text-lg font-semibold text-gray-800 text-center">Recent Searches</h2>
             </div>
           )}
           <button
@@ -102,14 +102,14 @@ export default function RecentSearchesSidebar({
                 // Loading state during hydration
                 <div className="p-6 text-center">
                   <Loader2 className="w-8 h-8 text-blue-500 animate-spin mx-auto mb-4" />
-                  <p className="text-gray-500 text-sm">Loading recent searches...</p>
+                  <p className="text-gray-500 text-sm text-center">Loading recent searches...</p>
                 </div>
               ) : recentSearches.length === 0 ? (
                 // Empty state after hydration
                 <div className="p-6 text-center">
                   <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                  <p className="text-gray-500 text-sm">No recent searches</p>
-                  <p className="text-gray-500 text-xs mt-1">Search for a location to see it here</p>
+                  <p className="text-gray-500 text-sm text-center">No recent searches</p>
+                  <p className="text-gray-500 text-xs mt-1 text-center">Search for a location to see it here</p>
                 </div>
               ) : (
                 // Searches loaded
@@ -123,7 +123,7 @@ export default function RecentSearchesSidebar({
                       title="Clear all recent searches"
                     >
                       <Trash2 className="w-4 h-4" />
-                      <span>Clear All</span>
+                      <span className="text-center">Clear All</span>
                     </button>
                   </div>
 
@@ -140,32 +140,32 @@ export default function RecentSearchesSidebar({
                         onClick={() => handleLocationClick(search)}
                       >
                         <div className="flex items-start justify-between">
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center space-x-2 mb-1">
+                          <div className="flex-1 min-w-0 text-center">
+                            <div className="flex items-center justify-center space-x-2 mb-1">
                               <MapPin className={`w-4 h-4 flex-shrink-0 ${
                                 isCurrentLocation(search) ? 'text-blue-600' : 'text-gray-500'
                               }`} />
-                              <h3 className={`font-medium text-sm truncate ${
+                              <h3 className={`font-medium text-sm truncate text-center ${
                                 isCurrentLocation(search) ? 'text-blue-900' : 'text-gray-900'
                               }`}>
                                 {search.name}
                               </h3>
                             </div>
                             
-                            <p className={`text-xs truncate ${
+                            <p className={`text-xs truncate text-center ${
                               isCurrentLocation(search) ? 'text-blue-700' : 'text-gray-500'
                             }`}>
                               {search.displayName}
                             </p>
                             
-                            <div className="flex items-center justify-between mt-2">
+                            <div className="flex items-center justify-center mt-2">
                               <div className="flex items-center space-x-1">
                                 <Clock className="w-3 h-3 text-gray-500" />
-                                <span className="text-xs text-gray-500">{search.timeAgo}</span>
+                                <span className="text-xs text-gray-500 text-center">{search.timeAgo}</span>
                               </div>
                               
                               {search.searchCount > 1 && (
-                                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full ml-2">
                                   {search.searchCount}x
                                 </span>
                               )}
