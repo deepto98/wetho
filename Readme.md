@@ -1,4 +1,4 @@
-# Wetho Weather App - Technical Documentation
+# Wetho  
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -50,8 +50,7 @@ Wetho is a weather application built with Next.js 15, TypeScript, Tailwind CSS a
 └── jest.setup.ts                # Jest setup & mocks
 ```
 
-### Component Architecture
-```
+### Communication Pattern
 ```mermaid
 graph TD
     A[App Page] --> B[LocationSearch]
@@ -71,6 +70,8 @@ graph TD
     I --> L[localStorage]
 ```
 
+ 
+---
  
 ## Features
 
