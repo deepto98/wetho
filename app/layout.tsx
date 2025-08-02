@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Wetho - Real-time Weather & Air Quality Monitoring App",
   description: "Get accurate real-time weather data and air quality information for any location worldwide. Features GPS location, search history, and detailed forecasts.",
-  keywords: "weather, air quality, AQI, temperature, humidity, wind, precipitation, forecast, real-time weather, weather app, climate data",
+  keywords: "weather, air quality, AQI, temperature, humidity, wind, precipitation, forecast, real-time weather, weather app, climate data, wetho",
   authors: [{ name: "Wetho Team" }],
   creator: "Wetho",
   publisher: "Wetho",
@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://weatho.vercel.app'),
+  metadataBase: new URL('https://wetho.netlify.app/'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: "Wetho - Real-time Weather & Air Quality Monitoring App",
     description: "Get accurate real-time weather data and air quality information for any location worldwide.",
-    url: 'https://weatho.vercel.app',
+    url: 'https://wetho.netlify.app/',
     siteName: 'Wetho',
     locale: 'en_US',
     type: 'website',
@@ -89,7 +89,7 @@ const structuredData = {
   "@type": "WebApplication",
   "name": "Wetho",
   "description": "Real-time weather and air quality information for any location worldwide",
-  "url": "https://weatho.vercel.app",
+  "url": "https://wetho.netlify.app/",
   "applicationCategory": "UtilitiesApplication",
   "operatingSystem": "Any",
   "offers": {
